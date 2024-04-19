@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header'; // Import Header component
-import CartItem from './components/CartItem'; // Import CartItem component
-import Footer from './components/Footer'; // Import Footer component
+import Header from '../components/Cart/Header.js'; 
+import CartItem from '../components/Cart/CartItem.js'; 
 import { Link } from 'react-router-dom'; // For navigation link
 
-const Cart = () => {
-  const [cartItems, setCartItems] = useState([]); // Store cart items
+const Cart = ({ cart }) => {
+  const [cartItems, setCartItems] = useState([]); // Maintain local cart state (optional)
 
   // Fetch cart items from local storage or database (replace with actual logic)
   useEffect(() => {
     const storedCart = localStorage.getItem('little_eddy_cart'); // Assuming localStorage for cart data
     if (storedCart) {
       setCartItems(JSON.parse(storedCart));
+    } else if (cart) { // Use prop if available (e.g., from Shop.js)
+      setCartItems(cart);
     }
-  }, []);
+  }, [cart]); // Update on cart prop change
 
   // Update cart items (replace with actual logic for adding/removing items)
   const handleUpdateCart = (itemId, quantity) => {
@@ -59,7 +60,6 @@ const Cart = () => {
           </div>
         </>
       )}
-      <Footer />
     </div>
   );
 };

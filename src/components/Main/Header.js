@@ -13,10 +13,10 @@ function Header() {
       </div>
       <nav>
         <ul>
-          <li><a href="#home"><FontAwesomeIcon icon={faShoppingCart} /><span>Shop</span></a></li>
-          <li><a href="#Cart"><FontAwesomeIcon icon={faUser} /><span>Cart</span></a></li>
-          <li><a href="#products"><FontAwesomeIcon icon={faUser} /><span>Account</span></a></li>
-          <li><a href="#contact"><FontAwesomeIcon icon={faSearch} /><span>Search</span></a></li>
+          <li><a href="/shop"><FontAwesomeIcon icon={faShoppingCart} /><span>Shop</span></a></li>
+          <li><a href="/cart"><FontAwesomeIcon icon={faUser} /><span>Cart</span></a></li>
+          <li><a href="/account"><FontAwesomeIcon icon={faUser} /><span>Account</span></a></li>
+          <li><a href="/search"><FontAwesomeIcon icon={faSearch} /><span>Search</span></a></li>
         </ul>
       </nav>
     </header>
