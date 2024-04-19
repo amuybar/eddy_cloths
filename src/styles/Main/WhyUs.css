@@ -1,0 +1,33 @@
+.why-us {
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.why-us-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.why-us-content p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.why-us-reasons {
+  list-style: disc;
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.why-us-reasons li {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.why-us-reasons strong {
+  color: #333;
+}

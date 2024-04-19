@@ -1,0 +1,55 @@
+.themed-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+  margin-bottom: 1rem;
+}
+
+.themed-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+  width: 100%;
+  height: 150px; 
+  object-fit: cover;
+}
+
+.card-content {
+  text-align: center;
+}
+
+.card-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-content p {
+  font-size: 0.9rem;
+}
+.clothing-list {
+  padding: 2rem;
+}
+
+.clothing-list h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.clothing-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; 
+}
+
+/* Responsive behavior (optional) */
+@media only screen and (max-width: 768px) {
+  .clothing-cards {
+    flex-direction: column; /* Stack cards on smaller screens */
+  }
+}
