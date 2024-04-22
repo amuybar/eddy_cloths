@@ -1,39 +1,36 @@
-import React, { useState } from 'react';
-import Header from '../components/Account/Header.js'; 
-import LoginForm from '../components/Account/LoginForm.js'; 
-import RegistrationForm from '../components/Account/RegistrationForm.js'; 
-import UserProfile from '../components/Account/UserProfile.js'; 
-import OrderHistory from '../components/Account/OrderHistory.js'; 
-import Footer from '../components/Account/Footer.js'; 
+import React, { useState, useEffect } from 'react';
+import '../styles/Account/AccountPage.css'; 
 
-const Account = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+const AccountPage = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState(null);
 
-  const handleLogin = () => {
-    setIsLoggedIn(true); 
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false); 
-  };
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    if (user) {
+      setUserData(user);
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   return (
-    <div className="account">
-      <Header />
+    <div className="account-container">
       {isLoggedIn ? (
         <>
-          <UserProfile onLogout={handleLogout} /> {/* User profile management */}
-          <OrderHistory /> {/* Order history display */}
+          <h2>Welcome, {userData.name}!</h2>
+          <div className="user-details">
+            <p>Email: {userData.email}</p>
+            {/* Add other user details as needed */}
+          </div>
+          {/* Render order history and favorites */}
         </>
       ) : (
-        <>
-          <LoginForm onLogin={handleLogin} /> {/* Login form */}
-          <RegistrationForm /> {/* Registration form */}
-        </>
+        <p>Please log in to view your account.</p>
       )}
-      <Footer />
     </div>
   );
 };
 
-export default Account;
+export default AccountPage;

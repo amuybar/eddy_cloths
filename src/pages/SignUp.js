@@ -1,35 +1,34 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { account, ID } from '../lib/appwrite';
-import '../styles/Register.css';
-
+import { register } from '../services/auth_services'; 
+import { useNavigate, Link } from 'react-router-dom'; // Import Link from react-router-dom
+import '../styles/Account/SignUp.css';
 
 const SignUp = () => {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [error, setError] = useState(null);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  async function register(email, password, name) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await account.create(ID.unique(), email, password, name);
-      setLoggedInUser(await account.get());
+      const response = await register( name, email, password, phone );
+      console.log(response); 
       navigate('/');
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message); 
     }
-  }
+  };
 
   return (
     <div className="register-container">
-          <p>
-        {loggedInUser ? `Already Logged in as ${loggedInUser.name}` : 'Not logged in'}
-      </p>
+      <p>{loggedInUser ? `Already Logged in as ${loggedInUser.name}` : 'Not logged in'}</p>
       <h2>Register</h2>
       {error && <p className="error-message">{error}</p>}
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={handleSubmit}>
         <input
           type="email"
           placeholder="Email"
@@ -51,10 +50,16 @@ const SignUp = () => {
           onChange={(e) => setName(e.target.value)}
           required
         />
-        <button type="submit" onClick={() => register(email, password, name)}>
-          Register
-        </button>
+        <input
+          type="text"
+          placeholder="Phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          required
+        />
+        <button type="submit">Register</button>
       </form>
+      <p>Already have an account? <Link to="/signin">Sign in</Link></p> 
     </div>
   );
 };

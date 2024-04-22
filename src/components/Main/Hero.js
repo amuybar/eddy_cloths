@@ -1,42 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/Main/Hero.css'; 
+import { useNavigate } from 'react-router-dom';
 
 const images = [
-  { src: '/images/1 (9).jpg', alt: 'Eddy Clothing - Image 1' },
-  { src: '/images/hero1.jpg', alt: 'Eddy Clothing - Image 2' },
-  { src: '/images/hero2.jpg', alt: 'Eddy Clothing - Image 3' },
-  // Add more images as needed
+  { src: '/images/11.jpg', alt: 'Kids Clothing ' },
+  { src: '/images/12.jpg', alt: 'Kids Clothing ' },
+  { src: '/images/13.jpg', alt: 'Kids Clothing' },
+  { src: '/images/14.jpg', alt: 'Kids Clothing ' },
+  { src: '/images/15.jpg', alt: 'Kids Clothing ' },
+  { src: '/images/16.jpg', alt: 'Kids Clothing' },
+  { src: '/images/17.jpg', alt: 'Kids Clothing ' },
+  { src: '/images/18.jpg', alt: 'Kids Clothing ' },
+  { src: '/images/19.jpg', alt: 'Kids Clothing' },
+  
 ];
 
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
-
+  const [isAnimating, setIsAnimating] = useState(false);
+  const navigate=useNavigate();
   useEffect(() => {
     const intervalId = setInterval(() => {
+      setIsAnimating(true); 
       setCurrentImage((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change interval as desired (in milliseconds)
+      setTimeout(() => setIsAnimating(false), 500); 
+    }, 500000); 
 
     return () => clearInterval(intervalId);
   }, []);
 
+  const handleNextImage = () => {
+    setIsAnimating(true);
+    setCurrentImage((prevIndex) => (prevIndex + 1) % images.length);
+    setTimeout(() => setIsAnimating(false), 400);
+  };
+  const handleNavigatetoSell=()=>{
+    navigate('/sell');
+  }
+  const handleNavigatetoShop=()=>{
+    navigate('/shop');
+  }
   return (
     <section className="hero">
       <div className="hero-carousel">
-        {images.map((image, index) => (
-          <img
-            key={image.src}
-            src={image.src}
-            alt={image.alt}
-            className={index === currentImage ? 'active' : 'inactive'}
-          />
-        ))}
+        <img
+          key={images[currentImage].src}
+          src={images[currentImage].src}
+          alt={images[currentImage].alt}
+          className={`hero-image ${isAnimating ? 'animate' : ''}`} // Apply animation class conditionally
+        />
       </div>
 
       <div className="hero-content">
-        <h1>Welcome to Eddy Clothing</h1>
-        <p>Dress to impress with our stylish and comfortable collection.</p>
-        <button>Shop Now</button>
+        <h1 className={`hero-title ${isAnimating ? 'animate-down' : ''}`}>Welcome to Kids Clothing</h1> {/* Animate heading */}
+        <p className={`hero-text ${isAnimating ? 'animate-down' : ''}`}>Dress to impress...</p> {/* Animate paragraph */}
+        <div className="cta-btns">
+          <button onClick={handleNavigatetoShop}>Shop Now</button>
+          <button onClick={handleNavigatetoSell}>Sell With Us</button>
+        </div>
       </div>
+
+      <button className="hero-next-btn" onClick={handleNextImage}>
+        Next
+      </button>
     </section>
   );
 };

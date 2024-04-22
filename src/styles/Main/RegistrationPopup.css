@@ -1,0 +1,20 @@
+.registration-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  display: none; /* Initially hidden */
+}
+
+.registration-popup.active {
+  display: block;
+}
+
+.registration-popup button {
+  float: right; 
+  cursor: pointer;
+}

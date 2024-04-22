@@ -7,6 +7,7 @@ import About from '../components/Main/About.js';
 import Themed from '../components/Main/Themed.js'; 
 import WhyUs from '../components/Main/WhyUs.js'; 
 import Footer from '../components/Main/Footer.js'; 
+import RegistrationPopup from '../components/Main/SignupPopUp.js';
 
 const Main = () => {
   return (
@@ -14,6 +15,7 @@ const Main = () => {
       <Header />
       <Hero />
       <Category />
+      <RegistrationPopup/> 
       <FeatureListing />
       <About />
       <Themed />

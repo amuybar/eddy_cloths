@@ -3,7 +3,7 @@ header {
   background-color: #ffffff;
   padding:  20px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: start;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -42,38 +42,97 @@ nav li {
   margin-right: 20px;
 }
 
-nav a {
+nav a:last-child {
   text-decoration: none;
-  color: #686767;
+  color: #000000;
+  padding: 5px;
+  font-size: 23px;
+ cursor: pointer;
+}
+nav a :first-child{
+  text-decoration: none;
+  color: #ffd000;
   font-size: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+}
+.auth{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.auth p{
+  font-size:20px;
+  color: rgb(26, 0, 26);
+  margin-right: 10px;
+}
+.auth button:first-child{
+  border: none;
+  border-radius: 9px;
+  padding: 9px;
+  background-color: rgb(3, 3, 58);
+  margin-right: 10px;
+  color: #ffffff;
+  cursor:pointer;
+}
+.auth button:last-child{
+  border: none;
+  border-radius: 9px;
+  padding: 9px;
+  background-color: rgb(151, 190, 226);
+  color: #000000;
+  cursor:pointer;
+}
+.auth button:first-child:hover{
+  border: none;
+  border-radius: 9px;
+  padding: 12px;
+  background-color: rgb(9, 9, 175);
+  margin-right: 10px;
+  color: #ffffff;
+  cursor:pointer;
+
+}
+.auth button:last-child:hover{
+  border: none;
+  cursor:pointer;
+  border-radius: 12px;
+  padding: 9px;
+  background-color: rgb(44, 137, 224);
+  color: #000000;
+
 }
 
 @media screen and (max-width: 600px) {
+  .auth{
+    display: none;
+  }
   header {
     flex-direction: column;
     align-items: center;
     padding: 10px;
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     background-color: #000000;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
   }
-
+  
   .logo {
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 999;
+    z-index: 1002;
     width: 100%;
     background-color: rgb(255, 255, 255);
   }
-
+  
   nav {
     position: fixed;
     bottom: 0;
@@ -81,20 +140,31 @@ nav a {
     background-color: #000000;
     z-index: 1000;
   }
-
+  
   nav ul {
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
   }
-
+  
   nav li {
     margin: 0 10px;
   }
-
-  nav a {
-    font-size: 16px;
-    color: #ffffff;
+  
+  nav a:last-child {
     text-decoration: none;
+    color: #ffffff;
+    padding: 5px;
+    font-size: 18pxpx;
+   
   }
+  nav a :first-child{
+    text-decoration: none;
+    color: #ffd000;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
 }

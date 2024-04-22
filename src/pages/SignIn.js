@@ -1,35 +1,29 @@
 import React, { useState } from 'react';
-import { account } from '../lib/appwrite';
-import { useNavigate } from 'react-router-dom';
-import '../styles/Login.css'
+import { login } from '../services/auth_services'; 
+import { useNavigate, Link } from 'react-router-dom'; // Import Link from react-router-dom
+import '../styles/Account/Login.css';
 
-const SignIn = () => {
-  const [loggedInUser, setLoggedInUser] = useState(null);
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
- const navigate=useNavigate();
+  const navigate = useNavigate();
 
-
-
-  async function login(email, password) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await account.createEmailSession(email, password);
-      setLoggedInUser(await account.get());
+      await login(email, password);
       navigate('/');
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message); 
     }
-  }
+  };
 
   return (
     <div className="login-container">
-          <p>
-        {loggedInUser ? `Logged in as ${loggedInUser.name}` : 'Not logged in'}
-      </p>
       <h2>Login</h2>
       {error && <p className="error-message">{error}</p>}
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={handleSubmit}>
         <input
           type="email"
           placeholder="Email"
@@ -44,12 +38,11 @@ const SignIn = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit" onClick={() => login(email, password)}>
-          Login
-        </button>
+        <button type="submit">Login</button>
       </form>
+      <p>Don't have an account? <Link to="/signup">Sign up</Link></p> 
     </div>
   );
 };
 
-export default SignIn;
+export default Login;
